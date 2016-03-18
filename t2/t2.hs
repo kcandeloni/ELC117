@@ -61,6 +61,9 @@ checkPair l = filter par l
  
 charFound :: Char -> String -> Bool
 charFound c p = if(length (filter (==c) p) > 0) then True else False
+--or
+charFound2 :: Char -> String -> Bool
+charFound2 c p = if((filter (==c) p) == "") then False else True
 
 --11. A função `takeWhile :: (a -> Bool) -> [a] -> [a]` é uma função de alta ordem. Ela recebe uma função condicional e uma lista, retornando o "menor prefixo" (isto é, porção inicial) da lista que satisfaça a condição dada. Teste os exemplos abaixo no GHCi e depois crie um novo exemplo:
 
