@@ -66,8 +66,8 @@ semVogais' (x:xs) = if (contido x "aeiou") then semVogais' xs else x : semVogais
 -- codifica ""
 --""
 
---codifica :: String -> String
---codifica f = 
+codifica :: String -> String
+codifica l = map (\c-> if(c==' ') then ' ' else '-') l
 
 -- 9.Defina uma função recursiva que resolva o mesmo problema do exercício anterior.
 
