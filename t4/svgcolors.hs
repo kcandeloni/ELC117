@@ -43,11 +43,10 @@ myzip (x:xs) (y:ys) = (y,x) : myzip xs ys
 
 geraCor :: Int-> [String]
 geraCor 0 = []
-geraCor n = (geraCor' n 140 0 0) : geraCor (n-1)
+geraCor n = (geraCor' n) : geraCor (n-1)
 
-geraCor' :: Int -> Int -> Int -> Int -> String
-geraCor' n a b c = "fill:rgb("++show (a+div (255-a) n)++","++show (b+div (255-b) n)++","++show (c+div (255-c) n)++")"
-
+geraCor' :: Int -> String
+geraCor' n = "fill:rgba(140,0,0,"++ show (1.03-(realToFrac n * 0.1)) ++")"
 {--
      O codigo abaixo gera um arquivo "mycolors.svg".
      A geracao usa 2 listas: uma com coordenadas dos retangulos e outra com as cores.
