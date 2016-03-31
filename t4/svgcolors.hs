@@ -40,7 +40,14 @@ applyStyles styles rects = myzip (cycle styles) rects
 myzip :: [String] -> [Rect] -> [(Rect,String)]
 myzip _ [] = []
 myzip (x:xs) (y:ys) = (y,x) : myzip xs ys
-      
+
+geraCor :: Int-> [String]
+geraCor 0 = []
+geraCor n = (geraCor' n 150 0 0) : geraCor (n-1)
+
+geraCor' :: Int -> Int -> Int -> Int -> String
+geraCor' n a b c = "fill:rgb("++show (a+div (255-a) n)++","++show (b+div (255-b) n)++","++show (c+div (255-c) n)++")"
+
 {--
      O codigo abaixo gera um arquivo "mycolors.svg".
      A geracao usa 2 listas: uma com coordenadas dos retangulos e outra com as cores.
@@ -50,6 +57,7 @@ main :: IO ()
 main = do
   let
     rects = genRects 10 50 50                          -- Deve gerar 10 retangulos de 50x50
-    styles = ["fill:rgb(140,0,0)","fill:rgb(0,140,0)"] -- Estilo: vermelho e verde
+--    styles = ["fill:rgb(140,0,0)","fill:rgb(0,140,0)"] -- Estilo: vermelho e verde
+    styles = geraCor 10
     rectstyles = applyStyles styles rects
   writeFile "mycolors.svg" (writeAllRects maxWidth maxHeight rectstyles)
