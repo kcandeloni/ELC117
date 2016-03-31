@@ -43,7 +43,7 @@ myzip (x:xs) (y:ys) = (y,x) : myzip xs ys
 
 geraCor :: Int-> [String]
 geraCor 0 = []
-geraCor n = (geraCor' n 150 0 0) : geraCor (n-1)
+geraCor n = (geraCor' n 140 0 0) : geraCor (n-1)
 
 geraCor' :: Int -> Int -> Int -> Int -> String
 geraCor' n a b c = "fill:rgb("++show (a+div (255-a) n)++","++show (b+div (255-b) n)++","++show (c+div (255-c) n)++")"
