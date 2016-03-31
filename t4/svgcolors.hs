@@ -24,16 +24,15 @@ writeAllRects w h rs =
 
 -- TO-DO
 -- Esta funcao deve gerar n retangulos de largura w e altura h.
--- Use recursao para implementa-la.
 genRects :: Float -> Float -> Float -> [Rect]
--- Remova a linha abaixo antes de implementar a nova funcao recursiva
 --genRects n w h = [((0.0,0.0), w, h)] -- Lista com somente um retangulo. 
 genRects 0 _ _ = []
-genRects n w h = (( (10-n)*w ,0.0),w,h) : genRects (n-1) w h
+genRects n w h = (( (10-n)*w ,0.0),w,h) : genRects (n-1) w h -- Lista com n retangulos
 
 -- Combina (zip) a lista de estilos com a lista de retangulos, aplicando os estilos ciclicamente.
 -- Se houverem mais retangulos que cores, havera retangulos com cores repetidas.
 -- Se houverem menos retangulos que cores, algumas cores nao serao usadas.
+
 applyStyles :: [String] -> [Rect] -> [(Rect,String)]
 applyStyles styles rects = myzip (cycle styles) rects
 
@@ -46,7 +45,7 @@ geraCor 0 = []
 geraCor n = (geraCor' n) : geraCor (n-1)
 
 geraCor' :: Int -> String
-geraCor' n = "fill:rgba(140,0,0,"++ show (1.03-(realToFrac n * 0.1)) ++")"
+geraCor' n = "fill:rgba(140,0,0,"++ show (1.03-(realToFrac n * 0.1)) ++")" -- Gera tons cada vez menos trasparentes
 {--
      O codigo abaixo gera um arquivo "mycolors.svg".
      A geracao usa 2 listas: uma com coordenadas dos retangulos e outra com as cores.
@@ -57,6 +56,6 @@ main = do
   let
     rects = genRects 10 50 50                          -- Deve gerar 10 retangulos de 50x50
 --    styles = ["fill:rgb(140,0,0)","fill:rgb(0,140,0)"] -- Estilo: vermelho e verde
-    styles = geraCor 10
+    styles = geraCor 10 -- Gera 10 tons de uma determinada cor
     rectstyles = applyStyles styles rects
   writeFile "mycolors.svg" (writeAllRects maxWidth maxHeight rectstyles)
