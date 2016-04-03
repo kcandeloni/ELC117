@@ -1,12 +1,22 @@
 <svg width='1000.00' height='100.00' xmlns='http://www.w3.org/2000/svg'>
-<rect x='0.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,3.0000000000000027e-2)' />
-<rect x='50.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.13)' />
-<rect x='100.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.22999999999999998)' />
-<rect x='150.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.32999999999999996)' />
-<rect x='200.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.42999999999999994)' />
-<rect x='250.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.53)' />
-<rect x='300.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.63)' />
-<rect x='350.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.73)' />
-<rect x='400.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.8300000000000001)' />
-<rect x='450.000' y='0.000' width='50.00' height='50.00' style='fill:rgba(140,0,0,0.93)' />
+<rect x='0.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 100.0%);rgb(140,0,0)' />
+<rect x='50.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 90.0%);rgb(140,0,0)' />
+<rect x='100.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 80.0%);rgb(140,0,0)' />
+<rect x='150.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 70.0%);rgb(140,0,0)' />
+<rect x='200.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 60.0%);rgb(140,0,0)' />
+<rect x='250.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 50.0%);rgb(140,0,0)' />
+<rect x='300.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 40.0%);rgb(140,0,0)' />
+<rect x='350.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 30.0%);rgb(140,0,0)' />
+<rect x='400.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 20.0%);rgb(140,0,0)' />
+<rect x='450.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 10.0%);rgb(140,0,0)' />
+<rect x='500.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 100.0%);rgb(140,0,0)' />
+<rect x='550.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 90.0%);rgb(140,0,0)' />
+<rect x='600.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 80.0%);rgb(140,0,0)' />
+<rect x='650.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 70.0%);rgb(140,0,0)' />
+<rect x='700.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 60.0%);rgb(140,0,0)' />
+<rect x='750.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 50.0%);rgb(140,0,0)' />
+<rect x='800.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 40.0%);rgb(140,0,0)' />
+<rect x='850.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 30.0%);rgb(140,0,0)' />
+<rect x='900.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 20.0%);rgb(140,0,0)' />
+<rect x='950.000' y='0.000' width='50.00' height='50.00' style='fill:hsl(0, 100%, 10.0%);rgb(140,0,0)' />
 </svg>

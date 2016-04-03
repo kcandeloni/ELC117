@@ -25,9 +25,11 @@ writeAllRects w h rs =
 -- TO-DO
 -- Esta funcao deve gerar n retangulos de largura w e altura h.
 genRects :: Float -> Float -> Float -> [Rect]
---genRects n w h = [((0.0,0.0), w, h)] -- Lista com somente um retangulo. 
-genRects 0 _ _ = []
-genRects n w h = (( (10-n)*w ,0.0),w,h) : genRects (n-1) w h -- Lista com n retangulos
+genRects n w h = genRects' 0 w h n -- Manda 0 para ser incrementado e assim, gerando o multiplicador da posição do retangulo 
+
+genRects' :: Float -> Float -> Float -> Float -> [Rect]
+genRects' _ _ _ 0 = []
+genRects' n w h nmax = (( n*w ,0.0),w,h) : genRects' (n+1) w h (nmax-1)-- Lista com n retangulos
 
 -- Combina (zip) a lista de estilos com a lista de retangulos, aplicando os estilos ciclicamente.
 -- Se houverem mais retangulos que cores, havera retangulos com cores repetidas.
@@ -41,11 +43,13 @@ myzip _ [] = []
 myzip (x:xs) (y:ys) = (y,x) : myzip xs ys
 
 geraCor :: Int-> [String]
-geraCor 0 = []
-geraCor n = (geraCor' n) : geraCor (n-1)
+geraCor n = geraCor' n n
 
-geraCor' :: Int -> String
-geraCor' n = "fill:rgba(140,0,0,"++ show (1.03-(realToFrac n * 0.1)) ++")" -- Gera tons cada vez menos trasparentes
+geraCor' :: Int -> Int-> [String]
+geraCor' 0 _ = []
+geraCor' n nmax= ("fill:hsl(0, 100%, "++show ((realToFrac n/realToFrac nmax)*100)++"%);rgb(140,0,0)") : geraCor' (n-1) nmax
+-- gera tons variando do mais do mais claro até o mais escuro
+
 {--
      O codigo abaixo gera um arquivo "mycolors.svg".
      A geracao usa 2 listas: uma com coordenadas dos retangulos e outra com as cores.
@@ -54,8 +58,8 @@ geraCor' n = "fill:rgba(140,0,0,"++ show (1.03-(realToFrac n * 0.1)) ++")" -- Ge
 main :: IO ()
 main = do
   let
-    rects = genRects 10 50 50                          -- Deve gerar 10 retangulos de 50x50
+    rects = genRects 20 50 50 -- Deve gerar n retangulos de 50x50, número de retangulos a critério do usuário
 --    styles = ["fill:rgb(140,0,0)","fill:rgb(0,140,0)"] -- Estilo: vermelho e verde
-    styles = geraCor 10 -- Gera 10 tons de uma determinada cor
+    styles = geraCor 10 -- Gera n tons de uma determinada cor, número de tons a critério do usuário
     rectstyles = applyStyles styles rects
   writeFile "mycolors.svg" (writeAllRects maxWidth maxHeight rectstyles)
