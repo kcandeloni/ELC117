@@ -1,3 +1,4 @@
+import Data.Char
 -- 1.Escreva uma função addSuffix :: String -> [String] -> [String] usando list comprehension, para adicionar um dado sufixo às strings contidas numa lista. Exemplo:
 
 -- addSuffix "@inf.ufsm.br" ["fulano","beltrano"]
@@ -42,11 +43,13 @@ numera' (x:xs) n = (n,x) : numera' xs (n+1)
 -- 6.Explique, em forma de comentário, o resultado de cada expressão abaixo.
 
 --a) [ (x,y) | x <- [1..5], even x, y <- [(x + 1)..6], odd y ]
--- Sera gerada uma lista de tuplas, 
+-- Gera uma lista de tuplas onde para cada x (lista de 1 a 5) par, forma uma tupla com y impar que pode assumir valores de x+1 até 6,
+-- já que x inicia em 1, y vai de  2 a 6.
 --b) [ a ++ b | a <- ["lazy","big"], b <- ["frog", "dog"]]
--- 
+-- Concatena cada String da lista a com cada lista da lista b.
 --c) concat [ [a,'-'] | a <- "paralelepipedo", not (elem a "aeiou")]
--- 
+-- Cria uma lista de Strings com as consoantes da String "paralelepipeto" e o caracter '-', e depois os concatena,
+-- formando uma lista com as consoantes da palavra separados por traço.  
 
 -- 7.(G. Malcolm, Univ. Liverpool) Write a function crossProduct :: [a] -> [b] -> [(a,b)] that takes two lists xs and ys, and returns the list of all possible pairings:
 
@@ -99,7 +102,7 @@ decompTuplaao t = (map (\x -> fst x) t, map (\y -> snd y) t)
 
 -- 12.O código em validaCPF.hs ilustra a validação dos dígitos verificadores de um CPF. Este código usa let para definir subexpressões, isto é, expressões intermediárias que irão compor o resultado da função. Observe que este código tem trechos um tanto repetitivos para calcular o primeiro e o segundo dígitos. Você deverá reescrever este código, criando uma função auxiliar que será chamada 2 vezes dentro de isCpfOk. Nessa função auxiliar, você deverá usar where para definir subexpressões.
 
-{-
+{- validaCPF.hs
    Programa em Haskell para validar os digitos de um CPF
    Mais info em: http://pt.wikipedia.org/wiki/Cadastro_de_Pessoas_F%C3%ADsicas
 
@@ -122,4 +125,20 @@ main = do
   let cpf = "12345678909"
       digitos = (map digitToInt cpf)
       result = isCpfOk digitos
-  putStrLn (show result) -}
+  putStrLn (show result)
+  -}
+
+isCpfOk :: [Int] -> Bool
+isCpfOk cpf = if checkCpf (take 9 cpf) == cpf !! 9 &&
+   checkCpf (take 10 cpf) == cpf !! 10 then True else False
+
+checkCpf :: [Int] -> Int
+checkCpf cpf = if expr < 2 then 0 else 11-expr
+   where n = (length cpf)+1
+         expr = (sum $ zipWith (*) cpf [n,(n-1)..2]) `mod` 11
+
+main = do
+  let cpf = "12345678909"
+      digitos = (map digitToInt cpf)
+      result = isCpfOk digitos
+  putStrLn (show result)
