@@ -35,8 +35,6 @@ gaucho(X) :- nasceu_em(X, rs).
 brasileiro(X) :- nasceu_em(X, brasil).
 europeu(X) :- nasceu_em(X, europa).
 
-isVowel(X) :- member(X,[a,e,i,o,u]).
-
 %1.Qual será o resultado das seguintes consultas?
 
 %?- europeu(andre).
