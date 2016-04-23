@@ -13,20 +13,22 @@ potN0(N,L) :- N > 0, C is 2 ^ N, L = [C | T], N1 is N - 1, potN0(N1,T).
 %5.
 zipmult([],[],[]).
 zipmult([H1|T1],[H2|T2],L3) :- L1 is H1*H2, L3 = [L1|T3], zipmult(T1,T2,T3).
-%6
+%6.
 potencias1(0,_,[]).
 potencias1(N,P,L) :- N > 0, N1 is N -1, X is 2^P, L = [X | T], P1 is P +1, potencias1(N1, P1, T).
 potencias(N,L) :- potencias1(N,0,L).
-%7
+%7.
 positivos([],[]).
 positivos([H|T],L2) :- H > 0, L2 = [H | T2], positivos( T, T2 ).
 positivos([_|T],L2) :- positivos(T,L2).
-%8
+%8.
 mesmaPosicao(H,[H|_],[H|_]).
 mesmaPosicao(A,[_|T],[_|T1]) :- mesmaPosicao(A,T,T1).
-%9
-
-comissao(NP,LP,C) :-
+%9.
+%comissao(NP,LP,C) :- .
+%10.
+azulejos(0,[]).
+azulejos(NA, [H|T]) :- NA > 0, N1 is floor(sqrt(NA)) ^ 2, NA1 is NA - N1, H = N1, azulejos(NA1, T).
 /*Qual será o resultado das seguintes consultas?
 
 ?- repete(1,a,L).
