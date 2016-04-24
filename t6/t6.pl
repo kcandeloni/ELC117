@@ -24,11 +24,11 @@ positivos([_|T],L2) :- positivos(T,L2).
 %8.
 mesmaPosicao(H,[H|_],[H|_]).
 mesmaPosicao(A,[_|T],[_|T1]) :- mesmaPosicao(A,T,T1).
-%9.
-%comissao(NP,LP,C) :- .
+%9. =/
+
 %10.
-azulejos(0,[]).
-azulejos(NA, [H|T]) :- NA > 0, N1 is floor(sqrt(NA)) ^ 2, NA1 is NA - N1, H = N1, azulejos(NA1, T).
+azulejos(0,0).
+azulejos(NA, T) :- NA > 0, N1 is floor(sqrt(NA)) ^ 2, NA1 is NA - N1, azulejos(NA1, R), T is R+1.
 /*Qual será o resultado das seguintes consultas?
 
 ?- repete(1,a,L).
