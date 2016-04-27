@@ -8,7 +8,7 @@ has5(L) :- length(L,N), N =:= 5.
 %3.
 hasN(N,L) :- length(L,M), N =:= M.
 %4.
-potN0(0,[]).
+potN0(0,[1]).
 potN0(N,L) :- N > 0, C is 2 ^ N, L = [C | T], N1 is N - 1, potN0(N1,T).
 %5.
 zipmult([],[],[]).
@@ -24,8 +24,11 @@ positivos([_|T],L2) :- positivos(T,L2).
 %8.
 mesmaPosicao(H,[H|_],[H|_]).
 mesmaPosicao(A,[_|T],[_|T1]) :- mesmaPosicao(A,T,T1).
-%9. =/
-
+%9.
+insereInicio(H, L, [H|L]):- !.
+remove(0,[_|T],T):-!.
+remove(I,[H|T],R) :- X is I -1, remove(X,T,Y), insereInicio(H,Y,R).%ref -> https://pt.wikibooks.org/wiki/Prolog/Exemplos
+comissao(NP,LP,L) :- NP >= 0, remove(NP,LP,L); NP1 is NP - 1, comissao(NP1,LP,L).
 %10.
 azulejos(0,0).
 azulejos(NA, T) :- NA > 0, N1 is floor(sqrt(NA)) ^ 2, NA1 is NA - N1, azulejos(NA1, R), T is R+1.
