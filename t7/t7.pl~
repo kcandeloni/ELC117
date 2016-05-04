@@ -1,4 +1,8 @@
-/*Uma for¸ca-tarefa para combater a dengue precisa visitar
+/*Olimp´iada Brasileira de Inform´atica – OBI2009 – Modalidade Inicia¸c˜ao N´ivel 2 – Fase 1
+
+Combate à Dengue
+
+Uma for¸ca-tarefa para combater a dengue precisa visitar
 sete casas em busca de focos do mosquito. As casa
 s˜ao denominadas F, G, H, L, M, P e T. Deve ser feito
 um plano de a¸c˜ao determinando a ordem em que as
@@ -48,7 +52,7 @@ r5(V) :- V=[_,_,_,_,_,_,p].
 completa e correta da ordem que as sete casas devem
 ser visitadas?
 (A) F, T, H, L, P, G e M.
-(B) H, G, F, L, T, P e M.
+(B) H, G, F, L, T, P e M. True
 (C) L, T, F, H G, M e P.
 (D) M, F, D, H, L, G e T.
 (E) M, L, H, G, F, P e T.
@@ -59,7 +63,50 @@ visitaCasa([l,t,f,h,g,m,p]).
 visitaCasa([m,f,d,h,l,g,t]).
 visitaCasa([m,l,h,g,f,p,t]).
 
-R.: B */
+
+Quest˜ao 2. Se em um trecho do percurso visitarmos
+as casas T, L e F, exatamente nesta ordem, qual a
+posi¸c˜ao que G foi visitada?
+
+(A) Segunda.
+(B) Terceira.
+(C) Quarta.
+(D) Quinta.
+(E) Sexta.
+
+Obs.: As Letras (A) e (B) podem ser descartas, uma vez que a regra 1 diz
+que a casa F tem de ser uma das três primeiras casas a ser visitada e se
+as casas T,L e F foram visitadas exatamente nessa ordem, certamente
+foram a 1ª, 2ª e 3ª casas a ser visitadas.
+
+visitaCasa(t,l,f,g,_,_,_).
+visitaCasa(t,l,f,_,g,_,_).
+visitaCasa(t,l,f,_,_,g,_).
+
+
+Quest˜ao 3. Se a casa H ´e a primeira a ser visitada,
+qual a quarta casa a ser visitada?
+(A) F.
+(B) G.
+(C) L. True
+(D) M.
+(E) P.
+
+visitaCasa([h,_,_,f,_,_,_]).
+visitaCasa([h,_,_,g,_,_,_]).
+visitaCasa([h,_,_,l,_,_,_]).
+visitaCasa([h,_,_,m,_,_,_]).
+visitaCasa([h,_,_,p,_,_,_]).
+
+or
+
+?- visitaCasa([h,_,_,X,_,_,_]).
+X = l ;
+X = l ;
+X = t ;
+X = t ; */
+
+
 
 
 
