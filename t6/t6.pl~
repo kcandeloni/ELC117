@@ -14,7 +14,7 @@ potN0(N,L) :- N > 0, C is 2 ^ N, L = [C | T], N1 is N - 1, potN0(N1,T).
 zipmult([],[],[]).
 zipmult([H1|T1],[H2|T2],L3) :- L1 is H1*H2, L3 = [L1|T3], zipmult(T1,T2,T3).
 %6.
-potencias1(0,_,[]).
+potencias1(0,_,[1]).
 potencias1(N,P,L) :- N > 0, N1 is N -1, X is 2^P, L = [X | T], P1 is P +1, potencias1(N1, P1, T).
 potencias(N,L) :- potencias1(N,0,L).
 %7.
@@ -26,7 +26,7 @@ mesmaPosicao(H,[H|_],[H|_]).
 mesmaPosicao(A,[_|T],[_|T1]) :- mesmaPosicao(A,T,T1).
 %9.
 insereInicio(H, L, [H|L]):- !.
-remove(0,[_|T],T).
+remove(0,[_|T],T):-!.
 remove(I,[H|T],R) :- X is I -1, remove(X,T,Y), insereInicio(H,Y,R).%ref -> https://pt.wikibooks.org/wiki/Prolog/Exemplos
 comissao(NP,LP,L) :- NP >= 0, remove(NP,LP,L); NP1 is NP - 1, comissao(NP1,LP,L).
 %10.
