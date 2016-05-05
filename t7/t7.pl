@@ -17,7 +17,7 @@ casa a ser visitada.
 • A casa M deve ser a primeira ou a s´etima a ser
 visitada.
 • A casa P deve ser uma das trˆes ´ultimas a serem
-visitadas. */
+visitadas. */
 
 visitaCasa(V) :- V=[_,_,_,_,_,_,_], Casas=[f,g,h,l,m,p,t], perm(Casas, V), r1(V), r2(V), r3(V), r4(V), r5(V).
 
@@ -37,8 +37,6 @@ r3(V) :- V=[_,l,_,_,_,_,_].
 r3(V) :- V=[_,_,l,_,_,_,_].
 r3(V) :- V=[_,_,_,l,_,_,_].
 r3(V) :- V=[_,_,_,_,l,_,_].
-
-
 r3(V) :- V=[_,_,_,_,_,l,_].
 
 r4(V) :- V=[m,_,_,_,_,_,_].
@@ -79,9 +77,9 @@ que a casa F tem de ser uma das três primeiras casas a ser visitada e se
 as casas T,L e F foram visitadas exatamente nessa ordem, certamente
 foram a 1ª, 2ª e 3ª casas a ser visitadas.
 
-visitaCasa(t,l,f,g,_,_,_).
-visitaCasa(t,l,f,_,g,_,_).
-visitaCasa(t,l,f,_,_,g,_).
+visitaCasa([t,l,f,g,_,_,_]).
+visitaCasa([t,l,f,_,g,_,_]).
+visitaCasa([t,l,f,_,_,g,_]).
 
 
 Quest˜ao 3. Se a casa H ´e a primeira a ser visitada,
@@ -105,6 +103,98 @@ X = l ;
 X = l ;
 X = t ;
 X = t ; */
+
+/* Olimpíada Brasileira de Informática – OBI2014 - Modalidade Iniciação • Nível 2, Fase 1
+
+Oito alunos – Beto, Dulce, Guto, Júlia, Kelly, Neto, Silvia e Vivian decidiram tentar quebrar o recorde
+da tradicional prova de revezamento e resistência de natação que acontece todos os anos na escola.
+Nessa prova, cada um dos oito competidores da equipe deve nadar mil metros, em estilo livre, na
+forma de revezamento: cada nadador cai na piscina para nadar apenas uma vez, um de cada vez. O
+objetivo é que todos nadem no menor tempo possível. Depois de muita discussão, os competidores
+decidiram que a ordem em que cairão na piscina deve obedecer às seguintes condições:
+• Silvia não nada por último.
+• Vivian nada após Júlia e Neto nadarem.
+• O primeiro a nadar é ou Beto ou Dulce.
+• Guto nada antes de Júlia, com exatamente uma pessoa nadando entre eles.
+• Kelly nada antes de Neto, com exatamente duas pessoas nadando entre eles. */
+
+revesamento(R) :- R=[_,_,_,_,_,_,_,_], Nadadores=[beto,dulce,guto,julia,kelly,neto,silvia,vivian], perm(Nadadores, R), r21(R), r22(R), r23(R), r24(R), r25(R).
+
+r21(R) :- R=[silvia,_,_,_,_,_,_,_].
+r21(R) :- R=[_,silvia,_,_,_,_,_,_].
+r21(R) :- R=[_,_,silvia,_,_,_,_,_].
+r21(R) :- R=[_,_,_,silvia,_,_,_,_].
+r21(R) :- R=[_,_,_,_,silvia,_,_,_].
+r21(R) :- R=[_,_,_,_,_,silvia,_,_].
+r21(R) :- R=[_,_,_,_,_,_,silvia,_].
+
+r22(R) :- nth0(Pvivian, R, vivian), nth0(Pjulia, R, julia), nth0(Pneto, R, neto), Pvivian>Pjulia, Pvivian>Pneto.
+
+r23([beto|_]).
+r23([dulce|_]).
+
+r24(R) :- nth0(Pguto, R, guto), nth0(Pjulia, R, julia), CPguto is Pguto + 2, Pjulia =:= CPguto.
+
+r25(R) :- nth0(Pkelly, R, kelly), nth0(Pneto, R, neto), CPkelly is Pkelly + 3, Pneto =:= CPkelly.
+
+vivian_beto(R) :- nth0(Pvivian, R, vivian), nth0(Pbeto, R, beto), Pvivian < Pbeto.
+
+/* Questão 21. Qual das seguintes alternativas é
+uma possível lista completa e correta dos nadadores
+do primeiro para o último?
+
+(A) Dulce, Kelly, Silvia, Guto, Neto, Beto, Júlia,
+Vivian
+(B) Dulce, Silvia, Kelly, Guto, Neto, Júlia, Beto,
+Vivian
+(C) Beto, Kelly, Silvia, Guto, Neto, Júlia, Vivian,
+Dulce %True
+(D) Beto, Guto, Kelly, Júlia, Dulce, Neto, Vivian,
+Silvia
+(E) Beto, Silvia, Dulce, Kelly, Vivian, Guto,
+Neto, Júlia
+
+revesamento([dulce,kelly,silvia,guto,neto,beto,julia,vivian]).
+revesamento([dulce,silvia,kelly,guto,neto,julia,beto,vivian]).
+revesamento([beto,kelly,silvia,guto,neto,julia,vivian,dulce]). %True
+revesamento([beto,guto,kelly,julia,dulce,neto,vivian,silvia]).
+revesamento([beto,silvia,dulce,kelly,vivian,guto,neto,julia]).
+
+Questão 22. Se Vivian nada antes de Beto, então
+qual dos seguintes pode ser o segundo a nadar?
+
+(A) Silvia
+(B) Júlia
+(C) Neto
+(D) Guto
+(E) Dulce
+
+revesamento([_,silvia,_,_,_,_,_,_]).
+revesamento([_,julia,_,_,_,_,_,_]).
+revesamento([_,neto,_,_,_,_,_,_]).
+revesamento([_,guto,_,_,_,_,_,_]). %True
+revesamento([_,dulce,_,_,_,_,_,_]).
+
+revesamento(R),vivian_beto(R).
+R = [dulce, guto, kelly, julia, silvia, neto, vivian, beto] ;
+R = [dulce, kelly, silvia, guto, neto, julia, vivian, beto] ;
+
+Questão 24. Guto pode nadar em qualquer das
+ordens abaixo, exceto:
+
+(A) sexto lugar	%False
+(B) quinto lugar
+(C) quarto lugar
+(D) terceiro lugar
+(E) segundo lugar
+
+revesamento([_,_,_,_,_,guto,_,_]). %False
+revesamento([_,_,_,_,guto,_,_,_]).
+revesamento([_,_,_,guto,_,_,_,_]).
+revesamento([_,_,guto,_,_,_,_,_]).
+revesamento([_,guto,_,_,_,_,_,_]). */
+
+
 
 
 
